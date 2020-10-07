@@ -1,0 +1,166 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+//VARIABLES GLOBALES
+int resta;
+int suma;
+int multi;
+
+//FUNCIONES CON PUNTEROS
+void restaPuntero(int *a,int b){
+  resta=*a-b;
+  *a=*a-b;
+}
+void sumaPuntero(int *a,int b){
+  suma=*a+b;
+  *a=*a+b;
+}
+void multiPuntero(int *a,int b){
+  multi=*a*b;
+  *a=*a*b;
+}
+
+//MAIN
+int main(int argc, char const *argv[]){
+  //INICIALIZAR VARIABLES
+  int n,opcion;
+  int *sumaNum1=0;
+  int sumaNum2;
+  int *restaNum1;
+  int restaNum2;
+  int *multiNum1;
+  int multiNum2;
+  int nDiv1,nDiv2,rDiv;
+  int pBa,pEx,pRes;
+  int *proSum1=0;
+  int proSum2,promedio;
+  int op;
+  //ASIGNACION DE MEMORIA
+  sumaNum1=malloc(sizeof(int)*100);
+  restaNum1=malloc(sizeof(int)*100);
+  multiNum1=malloc(sizeof(int)*100);
+  proSum1=malloc(sizeof(int)*100);
+  *multiNum1=1;
+
+  //CREACION MENU
+  do{
+    printf("\n 1.Calcular suma.");
+    printf("\n 2.Calcular resta.");
+    printf("\n 3.Calcular multiplicacion.");
+    printf("\n 4.Calcular division.");
+    printf("\n 5.Calcular potencia.");
+    printf("\n 6.Calcular promedio.");
+    printf("\n 7.Salir.");
+    printf("\n\n  Introduzca opcion  (1-7): ");
+    scanf("%d", &opcion);
+
+    //INICIO DE OPCIONES DENTRO DE UN SWITCH
+    switch(opcion){
+      //OPCION 1-SUMA
+      case 1:
+      printf("\n -----SUMA-----");
+      printf("\n Ingrese un numero: ");
+      scanf("%d",&sumaNum2);
+      sumaPuntero(sumaNum1,sumaNum2);
+      while(op!=2){
+        printf("\n Digite: 1 para sumar otro numero");
+        printf("\n Digite: 2 para mostrar el resultado----> ");
+        scanf("%d",&op);
+        if(op!=2){
+          printf("\n Ingrese un numero: ");
+          scanf("%d",&sumaNum2);
+          sumaPuntero(sumaNum1,sumaNum2); 
+        }
+      }
+      printf("%d\n",*sumaNum1);
+      op=0;
+      break;
+      //OPCION 2-RESTA
+      case 2:
+      printf("\n -----RESTA-----");
+      printf("\n Ingrese un numero: ");
+      scanf("%d",&restaNum2);
+      restaPuntero(restaNum1,restaNum2);
+      while (op!=2){
+        printf("\n Digite: 1 para restar otro numero.");
+        printf("\n Digite: 2 para mostrar el resultado ---->");
+        scanf("%d", &op);
+        if(op!=2){
+          printf("\n Ingrese un numero: ");
+          scanf("%d",&restaNum2);
+          restaPuntero(restaNum1, restaNum2);
+        } 
+      }
+      printf("%d\n",*restaNum1);
+      op=0;
+      break;
+      //OPCION 3-MULTIPLICACION
+      case 3:
+      printf("\n -----MULTIPLICACION-----");
+      printf("\n Ingrese un numero: ");
+      scanf("%d",&multiNum2);
+      multiPuntero(multiNum1, multiNum2);
+      while (op!=2){
+        printf("\n Digite: 1 para multiplicar otro numero.");
+        printf("\n Digite: 2 para mostrar el resultado ---->");
+        scanf("%d", &op);
+        if(op!=2){
+          printf("\n Ingrese un numero: ");
+          scanf("%d",&multiNum2);
+          multiPuntero(multiNum1, multiNum2);
+        } 
+      }
+      printf("%d\n",*multiNum1);
+      op=0;
+      break;
+      //OPCION 4-DIVISION
+      case 4:
+      printf("\n -----DIVISION-----");
+      printf("\n Ingrese primer numero: ");
+      scanf("%d",&nDiv1);
+      printf("\n Ingrese segundo numero: ");
+      scanf("%d",&nDiv2);
+      rDiv=nDiv1/nDiv2;
+      printf("%d\n",rDiv);
+      break;
+      //OPCION 5-POTENCIA
+      case 5:
+      printf("\n -----POTENCIA-----");
+      printf("\n Ingrese BASE numero: ");
+      scanf("%d",&pBa);
+      printf("\n Ingrese EXPONENTE numero: ");
+      scanf("%d",&pEx);
+      pRes=pow(pBa,pEx);
+      printf("%d",pRes);
+      break;
+      //OPCION 6-PROMEDIO
+      case 6:
+      printf("\n -----PROMEDIO-----");
+      printf("\n Ingrese un numero: ");
+      scanf("%d",&proSum2);
+      sumaPuntero(proSum1,proSum2);
+      int cantidadValores=1;
+      while(op!=2){
+        printf("\n Digite: 1 para agregar otro numero al promedio");
+        printf("\n Digite: 2 para mostrar promedio----> ");
+        scanf("%d",&op);
+        if(op!=2){
+          printf("\n Ingrese un numero: ");
+          scanf("%d",&proSum2);
+          sumaPuntero(proSum1,proSum2);
+          cantidadValores=cantidadValores+1;
+        }
+      }
+      promedio=*proSum1/cantidadValores;
+      printf("%d\n",promedio);
+      break;
+      //FIN DE OPCIONES
+    }
+
+  }while (opcion!=7);
+  free (sumaNum1);
+  free(restaNum1);
+  free(multiNum1);
+  free(proSum1);
+  return 0;
+}
