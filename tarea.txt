@@ -46,8 +46,8 @@ int main(int argc, char const *argv[]){
   do{
     printf("\n 1.Calcular suma.");
     printf("\n 2.Calcular resta.");
-    printf("\n 3.Calcular multiplicacion.");
-    printf("\n 4.Calcular division.");
+    printf("\n 3.Calcular multiplicación.");
+    printf("\n 4.Calcular división.");
     printf("\n 5.Calcular potencia.");
     printf("\n 6.Calcular promedio.");
     printf("\n 7.Salir.");
